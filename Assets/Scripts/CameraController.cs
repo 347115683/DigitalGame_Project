@@ -5,9 +5,9 @@ using UnityEngine;
 public class CamerController : MonoBehaviour
 {
     [SerializeField]private Transform player;
-    // Update is called once per frame
     private void Update()
     {
+        //update the position of the player per frame 
         transform.position = new Vector3(player.position.x,player.position.y,transform.position.z);
     }
 }

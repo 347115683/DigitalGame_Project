@@ -7,6 +7,7 @@ public class PlayerLife : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
+    private bool activeRP = false;
 
 [SerializeField] private AudioSource DeathSoundEffect;
 
@@ -18,6 +19,7 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //if the tag is trao then runs
         if (collision.gameObject.CompareTag("Trap"))
         {
             DeathSoundEffect.Play();
@@ -25,16 +27,24 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
+// to play ainimation of death
     private void Die()
     {
+        activeRP = true;
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
     }
 
     private void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        anim.SetTrigger("respawn");
+        // run ainimation of respawn
+        if (activeRP == true)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        } 
+            anim.SetTrigger("respawn"); 
+
+
 
     }
 }

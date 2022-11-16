@@ -23,6 +23,7 @@ public class FireTrap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // if collkider has a tag of Player, the IF statement runs
         if (collision.tag == "Player")
         {
             if (!triggered)
