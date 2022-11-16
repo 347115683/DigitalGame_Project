@@ -9,6 +9,7 @@ public class Finish : MonoBehaviour
     private bool LevelCompleted = false;
     void Start()
     {
+        // play sound
         FinishSound = GetComponent<AudioSource>();
     }
 
@@ -18,12 +19,14 @@ public class Finish : MonoBehaviour
         {
             FinishSound.Play();
             //CompleteLevel();
+            //Invokes the method methodName in time seconds.
             Invoke("CompleteLevel",2f);
             LevelCompleted = true;
         }
     }
     private void CompleteLevel()
     {
+        // pass to next level (switch scene)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }

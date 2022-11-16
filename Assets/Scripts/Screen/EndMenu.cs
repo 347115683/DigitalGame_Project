@@ -6,6 +6,7 @@ public class EndMenu : MonoBehaviour
 {
     public void Quit()
     {
+        //close a running application
         Application.Quit();
     }
 }
