@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class FireTrap : MonoBehaviour
 {
 
-    [Header("Firetrap Timers")]
+    [Header("FireTrap Timers")]
     [SerializeField] private float activationDelay;
     [SerializeField] private float activeTime;
 
@@ -23,26 +24,29 @@ public class FireTrap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.gameObject.name == "Player")
+
         // if collkider has a tag of Player, the IF statement runs
         if (collision.tag == "Player")
+
         {
             if (!triggered)
             {
                 StartCoroutine(ActivateFireTrap());
+
             }
             if (active)
             {
-                collision.gameObject.transform.tag = "trap";
+                transform.gameObject.tag = "Trap";
             }
         }
     }
-
 
     private IEnumerator ActivateFireTrap()
     {
         triggered = true;
         spriteRend.color = Color.red;
-
 
         //wait for delay, activate trap, turn on animation, return color back to normal
         yield return new WaitForSeconds(activationDelay);
@@ -55,5 +59,6 @@ public class FireTrap : MonoBehaviour
         active = false;
         triggered = false;
         anim.SetBool("activated",false);
+        transform.gameObject.tag = "FireTrap";
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cherry
   - Trap
+  - FireTrap
   layers:
   - Default
   - TransparentFX

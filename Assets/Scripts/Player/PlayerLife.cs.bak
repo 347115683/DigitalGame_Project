@@ -27,7 +27,19 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD:Assets/Scripts/Player/PlayerLife.cs
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Trap"))
+        {
+            DeathSoundEffect.Play();
+            Die();
+        }
+    }
+
+=======
 // to play ainimation of death
+>>>>>>> 3420d95b2a5fdac98ddbd80734074ec2787e0e28:Assets/Scripts/PlayerLife.cs
     private void Die()
     {
         activeRP = true;
@@ -37,6 +49,9 @@ public class PlayerLife : MonoBehaviour
 
     private void RestartLevel()
     {
+<<<<<<< HEAD:Assets/Scripts/Player/PlayerLife.cs
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+=======
         // run ainimation of respawn
         if (activeRP == true)
         {
@@ -46,5 +61,6 @@ public class PlayerLife : MonoBehaviour
 
 
 
+>>>>>>> 3420d95b2a5fdac98ddbd80734074ec2787e0e28:Assets/Scripts/PlayerLife.cs
     }
 }
