@@ -25,6 +25,15 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Trap"))
+        {
+            DeathSoundEffect.Play();
+            Die();
+        }
+    }
+
     private void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
@@ -34,7 +43,5 @@ public class PlayerLife : MonoBehaviour
     private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        anim.SetTrigger("respawn");
-
     }
 }
