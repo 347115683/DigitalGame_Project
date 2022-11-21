@@ -7,6 +7,8 @@ TagManager:
   - Cherry
   - Trap
   - FireTrap
+  - Enemy
+  - Friend
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - UI
   - Ground
   - Wall
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -44,9 +46,18 @@ TagManager:
   - name: Background
     uniqueID: 54607395
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: OverBackground
+    uniqueID: 2950551537
+    locked: 0
+  - name: Saw
+    uniqueID: 2352893117
     locked: 0
   - name: Terrain
     uniqueID: 3540085393
+    locked: 0
+  - name: JumpableWall
+    uniqueID: 1358602323
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

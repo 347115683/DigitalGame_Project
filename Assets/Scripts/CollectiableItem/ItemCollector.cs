@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ItemCollector : MonoBehaviour
 {
-    public int cherries = 0;
+    public int cherries;
     [SerializeField] private Text cherriesText;
 
     [SerializeField] private AudioSource CollectSoundEffect;
@@ -18,19 +18,11 @@ public class ItemCollector : MonoBehaviour
             // play sound effects
             CollectSoundEffect.Play();
             // count the number of collected cherries 
-            cherries++;
-            // define the cherry or cherries
-            if (cherries == 1)
-            {
-                //display in the console
-                Debug.Log("Cherry: " + cherries);
-                cherriesText.text = "Cherry: " + cherries;
-            }
-            else
-            {
-            Debug.Log("Cherries: " + cherries);
-            cherriesText.text = "Cherries: " + cherries;
-            }
+            cherries++;   
+            //display in the console
+            //Debug.Log("Cherry: " + cherries );
+                cherriesText.text = "x " + cherries ;
+
         }
     }
 }

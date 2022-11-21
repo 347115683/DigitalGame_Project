@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5032308796271881460}
   - component: {fileID: 5032308796271881461}
   - component: {fileID: 5032308796271881458}
-  - component: {fileID: 5032308796271881459}
+  - component: {fileID: 1368771172079979570}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Untagged
@@ -230,7 +230,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5032308796271881459
+--- !u!114 &1368771172079979570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,3 +242,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eae8ff4adc28fc47a1e45b2be950f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FinishSound: {fileID: 5032308796271881458}

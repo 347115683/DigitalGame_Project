@@ -37,18 +37,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //moving directions left or right 
         UpdateAnimatonState();
         dirX = Input.GetAxisRaw("Horizontal");
+        if (rb.bodyType == RigidbodyType2D.Dynamic)
+        {
+            //move speed 
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        }
 
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        //player jumping status
          if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
-        else if (onWall() && !IsGrounded())
+        else if ((onWallLeft() && !IsGrounded()) || (onWallRight() && !IsGrounded()))
         {
-            rb.gravityScale = 0;
-            rb.velocity = Vector2.zero;
+            if (!canDoubleJump)
+            {
+                canDoubleJump = true;
+            }
         }
         else
         {
@@ -64,21 +72,21 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x,jumpPower); 
         canDoubleJump = true;
         }
-        else if (onWall() && !IsGrounded())
+        else if ((onWallLeft() && !IsGrounded()) || (onWallRight() && !IsGrounded()) && rb.bodyType == RigidbodyType2D.Dynamic)
         {
             JumpSoundEffect.Play();
-            rb.velocity = new Vector2(rb.velocity.x,jumpSpeed); 
+            rb.velocity = new Vector2(rb.velocity.x,jumpSpeed);
         }
-        else
-        {
-            if (canDoubleJump)
+            else
             {
-                JumpSoundEffect.Play();
-                Vector2 doubleJumpVel = new Vector2(0.0f,doubleJumpSpeed);
-                rb.velocity = Vector2.up*doubleJumpVel;
-                canDoubleJump = false;
+                if (canDoubleJump)
+                {
+                    JumpSoundEffect.Play();
+                    Vector2 doubleJumpVel = new Vector2(0.0f,doubleJumpSpeed);
+                    rb.velocity = Vector2.up*doubleJumpVel;
+                    canDoubleJump = false;
+                }
             }
-        }
     }
     
     private void UpdateAnimatonState()
@@ -95,45 +103,40 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.running;
             sprite.flipX = true;
         }
-        else if (rb.velocity.y > .1f && dirX > 0f && canDoubleJump)
+        else if (rb.velocity.y > .1f && canDoubleJump)
         {
             state = MovementState.jumping;
-            sprite.flipX = false;
         }
-        else if (rb.velocity.y > .1f && dirX < 0f && canDoubleJump)
-        {
-            state = MovementState.jumping;
-            sprite.flipX = true;
-        }
-        else if (rb.velocity.y > .1f && !canDoubleJump &&  dirX > 0f )
-        {
-            state = MovementState.doubleJump;
-            sprite.flipX = false;
-        }
-        else if (rb.velocity.y > .1f && !canDoubleJump &&  dirX < 0f )
-        {
-            state = MovementState.doubleJump;
-            sprite.flipX = true;
-        }
-        else if (rb.velocity.y < -.1f && !IsGrounded())
+        else if (rb.velocity.y < -.1f  && !IsGrounded() && dirX > 0f)
         {
             state = MovementState.falling;
+            sprite.flipX = false;
         }
-        else if (!IsGrounded() && onWall())
+        else if (rb.velocity.y < -.1f  && !IsGrounded() && dirX < 0f)
+        {
+            state = MovementState.falling;
+            sprite.flipX = true;
+
+        }
+        else if (rb.velocity.y > .1f && !canDoubleJump && !canDoubleJump)
+        {
+            state = MovementState.doubleJump;
+        }
+        else if ((!IsGrounded() && onWallLeft() && dirX > 0f) || (onWallRight() && !IsGrounded() && dirX > 0f))
         {
             state = MovementState.wallJump;
+            sprite.flipX = false;
         }
-        else if (!canDoubleJump && !IsGrounded() && !canDoubleJump)
+        else if ((!IsGrounded() && onWallLeft() && dirX < 0f) || (onWallRight() && !IsGrounded() && dirX < 0f))
         {
-            state = MovementState.doubleFall;
+            state = MovementState.wallJump;
+            sprite.flipX = true;
         }
         else
         {
-
             state = MovementState.idle;
-  
         }
-       
+
 
         anim.SetInteger("state",(int)state);
     }
@@ -145,9 +148,14 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider !=null;
     }
 
-    private bool onWall()
+    private bool onWallLeft()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, new Vector2(transform.localScale.x, 0), 0.1f, jumpableWall);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.left, 0.1f, jumpableWall);
+        return raycastHit.collider !=null;
+    }
+        private bool onWallRight()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.right, 0.1f, jumpableWall);
         return raycastHit.collider !=null;
     }
 }

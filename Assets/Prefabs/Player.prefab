@@ -19,9 +19,10 @@ GameObject:
   - component: {fileID: 8777234800454117413}
   - component: {fileID: 8777234800454117412}
   - component: {fileID: 8777234800454117411}
-  m_Layer: 0
+  - component: {fileID: 5487086812598579107}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   jumpSpeed: 14
+  jumpPower: 14
+  doubleJumpSpeed: 14
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
@@ -193,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37897d6dc389e90469d2d6f1481a995a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cherries: 0
   cherriesText: {fileID: 0}
   CollectSoundEffect: {fileID: 8777234800454117412}
 --- !u!114 &8777234800454117414
@@ -207,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fdebe880949df4a8c4ef194bc994fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfItems: {fileID: 0}
   DeathSoundEffect: {fileID: 8777234800454117411}
 --- !u!82 &8777234800454117413
 AudioSource:
@@ -496,3 +501,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &5487086812598579107
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8777234800454117422}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 3a1bafa099fb9a945a9ca6e7eadac08c, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2, y: 2}
+  m_Direction: 0
