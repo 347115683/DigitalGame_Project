@@ -148,6 +148,7 @@ MonoBehaviour:
   attackCooldown: 2
   damage: 2
   range: 2
+  attackSoundEffect: {fileID: 0}
   boxCollider: {fileID: 3168877914072036206}
   colliderDistance: 4
   playerLayer:

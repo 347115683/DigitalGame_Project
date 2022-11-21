@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    [Header ("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] arrows;
+
     private float cooldownTimer;
 
-    [Header("SFX")]
+    [Header("Sound Effect")]
     [SerializeField] private AudioSource SoundEffect;
 
     private void Attack()

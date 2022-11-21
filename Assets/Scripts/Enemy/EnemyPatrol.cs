@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
+    [Header ("Position Parameter")]
     [SerializeField] private Transform leftEdge;
     [SerializeField] private Transform rightEdge;
 
+    [Header ("Enemy Parameter")]
     [SerializeField] private Transform enemy;
     [SerializeField] private float enemySpeed;
+    [SerializeField] private Animator anim;
+    [SerializeField] private float idleDuration;
 
     private Vector3 initScale;
 
     private bool movingLeft;
 
-    [SerializeField] private Animator anim;
-    [SerializeField] private float idleDuration;
     private float idleTimer;
 
     private void Awake()
@@ -23,6 +25,7 @@ public class EnemyPatrol : MonoBehaviour
         initScale = enemy.localScale;
     }
 
+// to stops "moving" animation
     private void OnDisable()
     {
         anim.SetBool("moving",false);
@@ -35,7 +38,6 @@ public class EnemyPatrol : MonoBehaviour
             if (enemy.position.x >= leftEdge.position.x)
             {
                 MoveInDirection(-1);
-
             }
             else
             {

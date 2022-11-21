@@ -8,6 +8,7 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private int damage;
     [SerializeField] private float range;
+    [SerializeField] private AudioSource attackSoundEffect;
 
     [Header("Collider Parameters")]
     [SerializeField] private BoxCollider2D boxCollider;
@@ -56,6 +57,8 @@ public class MeleeEnemy : MonoBehaviour
         if (hit.collider != null)
         {
             playerHealth = hit.transform.GetComponent<Health>();
+            attackSoundEffect.Play();
+
         }
         return hit.collider != null;
     }

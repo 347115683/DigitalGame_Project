@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class EnemyLife : MonoBehaviour
 {
     
-    public bool EnemyAlive = true; 
+    [Header ("Sound Parameter")]
     [SerializeField] private AudioSource DeathSoundEffect;
-
+    [Header ("Player Parameter")]
     [SerializeField] private ItemCollector numberOfItems;
+    public bool EnemyAlive = true; 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -22,7 +23,7 @@ public class EnemyLife : MonoBehaviour
     }
         private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if the tag is trap then runs following code
+        //if collision is tagged as trap then runs following code
         {
             if (collision.gameObject.CompareTag("Player") && numberOfItems.cherries>=10)
             {
@@ -37,6 +38,7 @@ public class EnemyLife : MonoBehaviour
     {
         EnemyAlive = false;
         DeathSoundEffect.Play();
+        // destory the object in the scene
         Destroy(gameObject);
     }
 

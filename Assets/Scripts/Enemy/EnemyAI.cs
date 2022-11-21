@@ -20,16 +20,19 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        // repeat the function
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
     void UpdatePath()
     {
+        // use seeker function to find the path between current object and target
         if (seeker.IsDone())
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
     }
+    //if path is comopleted successfully stops in the position
     void OnPathComplete(Path P)
     {
         if (!P.error)
@@ -38,7 +41,7 @@ public class EnemyAI : MonoBehaviour
             currentWayPoint = 0;
         }
     }
-    // Update is called once per frame
+    // run in a fixed frame rate
     void FixedUpdate()
     {
         if (path == null)
@@ -66,7 +69,7 @@ public class EnemyAI : MonoBehaviour
         {
             currentWayPoint++;
         }
-        
+        // to turn the facing direcion
         if (force.x >= 0.01f)
         {
             EnemyGFX.localScale = new Vector3(-1f, 1f, 1f);
