@@ -9,7 +9,6 @@ public class Enemy_Damage : MonoBehaviour
     {
         // if collider is taged player then lose health 
         if (collision.tag == "Player")
-            collision.GetComponent<Health>()?.TakeDamage(damage);
+            collision.GetComponent<Health>().TakeDamage(damage);
     }
-
 }

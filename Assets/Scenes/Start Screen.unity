@@ -318,8 +318,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 647.34485, y: -252}
-  m_SizeDelta: {x: 412.0663, y: 63.4304}
+  m_AnchoredPosition: {x: 391, y: -232}
+  m_SizeDelta: {x: 115.3945, y: 37.0316}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858808645
 MonoBehaviour:
@@ -354,8 +354,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "A - MOVE LEFT\t\nD - MOVE RIGHT\nSpace - JUMP (DISCOVER MORE!)\nESC -
-    QUIT\n"
+  m_Text: TRY IT!
 --- !u!222 &858808646
 CanvasRenderer:
   m_ObjectHideFlags: 0
